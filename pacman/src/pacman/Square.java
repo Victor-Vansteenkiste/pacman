@@ -7,12 +7,15 @@ import java.util.Arrays;
  * The top row and the leftmost column have index 0.
  */
 public class Square {
+	public int row;
+	public int col;
+    
 	
 	public MazeMap getMazeMap() { throw new RuntimeException("Not yet implemented"); }
 	
-	public int getRowIndex() { throw new RuntimeException("Not yet implemented"); }
+	public int getRowIndex() { return this.row; }
 	
-	public int getColumnIndex() { throw new RuntimeException("Not yet implemented"); }
+	public int getColumnIndex() { return this.col; }
 	
 	public boolean isPassable() { throw new RuntimeException("Not yet implemented"); }
 	
@@ -26,8 +29,29 @@ public class Square {
 	 */
 	// No formal documentation required
 	public Square getNeighbor(Direction direction) {
-		// Implementation hint: use method java.lang.Math.floorMod.
-		throw new RuntimeException("Not yet implemented");
+		int row = getRowIndex();
+		int col = getColumnIndex();
+		Square neighbor = new Square();
+		
+	    switch (direction) {
+	        case RIGHT:
+	            neighbor.row = (java.lang.Math.floorMod(row+1,22));
+	            neighbor.col = col;
+	            return neighbor;
+	        case LEFT:
+	        	neighbor.row = (java.lang.Math.floorMod(row-1,22));
+	            neighbor.col = col;
+	            return neighbor;
+	        case UP:
+	        	neighbor.row = row;
+	            neighbor.col = (java.lang.Math.floorMod(row-1,28));
+	            return neighbor;
+	        case DOWN:
+	        	neighbor.row = row;
+	            neighbor.col = (java.lang.Math.floorMod(row+1,28));
+	            return neighbor;
+	            
+	    }
 	}
 
 	/**
@@ -35,7 +59,8 @@ public class Square {
 	 */
 	// No formal documentation required
 	public boolean canMove(Direction direction) {
-		throw new RuntimeException("Not yet implemented");
+		Square to = getNeighbor(direction);
+		return to.isPassable();
 	}
 
 	/**
@@ -55,3 +80,5 @@ public class Square {
 	}
 	
 }
+
+
