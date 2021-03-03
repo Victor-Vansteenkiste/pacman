@@ -53,7 +53,7 @@ public class MazeMap {
 	 * 		| rowIndex < 0 || rowIndex >= getHeight()
 	 * @throws IllegalArgumentException if the given column index is negative or greater than or equal to the width.
 	 * 		| columnIndex < 0 || columnIndex >= getWidth()
-	 * 
+	 * @basic
 	 * 
 	 */
 	public boolean isPassable(int rowIndex, int columnIndex) {
@@ -73,11 +73,19 @@ public class MazeMap {
 	 * 		| width < 0
 	 * @throws IllegalArgumentException if height is negative.
 	 * 		| height < 0
-	 * @throw IllegalArgumentException if passable is null.
+	 * @throws IllegalArgumentException if passable is null.
 	 * 		| passable == null
 	 * @throws IllegalArgumentException if the length of passable doesn't equal the given width multiplied by the given height
 	 * 		| passable.length != width * height
 	 * 
+	 * @post The width equals the given width.
+	 * 		| width == getWidth()
+	 * @post The height equals the given height.
+	 * 		| height == getHeight()
+	 * @post The passability equals the given passability.
+	 * 		| IntStream.range(0, getHeight()).allMatch(rowIndex -> 
+	 * 		|		IntStream.range(0, getWidth()).allMatch(columnIndex ->
+	 * 		|			isPassable(rowIndex, columnIndex) == passable[getWidth() * rowIndex + columnIndex]))
 	 * 
 	 */
 	public MazeMap(int width, int height, boolean[] passable) {
