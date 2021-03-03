@@ -7,17 +7,19 @@ import java.util.Arrays;
  * The top row and the leftmost column have index 0.
  */
 public class Square {
-	public int row;
-	public int col;
+	
+	private MazeMap mazeMap;
+	private int row;
+	private int col;
     
 	
-	public MazeMap getMazeMap() { throw new RuntimeException("Not yet implemented"); }
+	public MazeMap getMazeMap() { return this.mazeMap; }
 	
 	public int getRowIndex() { return this.row; }
 	
 	public int getColumnIndex() { return this.col; }
 	
-	public boolean isPassable() { throw new RuntimeException("Not yet implemented"); }
+	public boolean isPassable() { return mazeMap.isPassable(row, col); }
 	
 	public static Square of(MazeMap mazeMap, int rowIndex, int columnIndex) {
 		throw new RuntimeException("Not yet implemented");
@@ -25,7 +27,7 @@ public class Square {
 	
 	/**
 	 * Returns this square's neighbor in the given direction.
-	 * If this square has no neigbor in the given direction, return the square that is furthest away in the opposite direction.
+	 * If this square has no neighbor in the given direction, return the square that is farthest away in the opposite direction.
 	 */
 	// No formal documentation required
 	public Square getNeighbor(Direction direction) {

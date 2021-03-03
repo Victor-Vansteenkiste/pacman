@@ -7,18 +7,66 @@ import java.util.Random;
  */
 public class Ghost {
 	
-	public Square getSquare() { throw new RuntimeException("Not yet implemented"); }
+	// QUESTION --> hoe zit het met de precondities van deze klasses? Hoe moet je dat gaan noteren?
+	private Square square;
+	private Direction direction;
+	
+	// QUESTION --> moet je postcondities schrijven voor een basic getter?
+	/**
+	 * Returns the square that the ghost is on. 
+	 * @basic 
+	 */
+	public Square getSquare() { return square; }
 	
 	/**
 	 * Returns the direction in which this ghost will preferably move next.
+	 * @basic
 	 */
-	public Direction getDirection() { throw new RuntimeException("Not yet implemented"); }
+	public Direction getDirection() { return direction; }
 	
-	public Ghost(Square square, Direction direction) { throw new RuntimeException("Not yet implemented"); }
+	/**
+	 * Initializes the instance of this class with the given square and direction.
+	 * 
+	 * @post The square equals the given square.
+	 * 		|square == getSquare()
+	 * @post The direction equals the given direction.
+	 * 		|direction == getDirection()
+	 * 
+	 */
+	public Ghost(Square square, Direction direction) {
+		
+		this.square = square;
+		this.direction = direction;
+	}
 	
-	public void setSquare(Square square) { throw new RuntimeException("Not yet implemented"); }
+	/**
+	 * Changes the value of square to the given square.
+	 * 
+	 * @post square equals the given square.
+	 * 		| square == getSquare()
+	 * @post direction remains unchanged.
+	 * 		| old(getDirection()) == getDirection()
+	 * 
+	 * 
+	 * 
+	 */
+	public void setSquare(Square square) {
+		this.square = square;
+		}
 	
-	public void setDirection(Direction direction) { throw new RuntimeException("Not yet implemented"); }
+	/**
+	 * Changes the value of direction to the given direction.
+	 * 
+	 * @post direction equals the given direction.
+	 * 		| direction == getDirection()
+	 * @post square remains unchanged.
+	 * 		| old(getSquare()) == getSquare()
+	 * 
+	 * 
+	 */
+	public void setDirection(Direction direction) { 
+		this.direction = direction; 
+		}
 	
 	private static int MOVE_FORWARD_PREFERENCE = 10;
 	
