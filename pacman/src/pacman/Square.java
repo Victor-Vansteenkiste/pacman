@@ -40,29 +40,29 @@ public class Square {
 	 */
 	// No formal documentation required
 	public Square getNeighbor(Direction direction) {
-		int row = getRowIndex();
-		int col = getColumnIndex();
+		int rowIndex = getRowIndex();
+		int columnIndex = getColumnIndex();
 		Square neighbor = new Square();
 		
 	    switch (direction) {
 	        case RIGHT:
-	            neighbor.row = (java.lang.Math.floorMod(row+1,22));
-	            neighbor.col = col;
+	            neighbor.rowIndex = (java.lang.Math.floorMod(rowIndex+1,22));
+	            neighbor.columnIndex = columnIndex;
 	            return neighbor;
 	        case LEFT:
-	        	neighbor.row = (java.lang.Math.floorMod(row-1,22));
-	            neighbor.col = col;
+	        	neighbor.rowIndex = (java.lang.Math.floorMod(rowIndex-1,22));
+	            neighbor.columnIndex = columnIndex;
 	            return neighbor;
 	        case UP:
-	        	neighbor.row = row;
-	            neighbor.col = (java.lang.Math.floorMod(row-1,28));
+	        	neighbor.rowIndex = rowIndex;
+	            neighbor.columnIndex = (java.lang.Math.floorMod(rowIndex-1,28));
 	            return neighbor;
 	        case DOWN:
-	        	neighbor.row = row;
-	            neighbor.col = (java.lang.Math.floorMod(row+1,28));
+	        	neighbor.rowIndex = rowIndex;
+	            neighbor.columnIndex = (java.lang.Math.floorMod(rowIndex+1,28));
 	            return neighbor;
-	            
 	    }
+	    
 	}
 
 	/**
