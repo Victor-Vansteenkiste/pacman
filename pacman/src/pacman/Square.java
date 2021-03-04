@@ -5,21 +5,30 @@ import java.util.Arrays;
 /**
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
  * The top row and the leftmost column have index 0.
+ * 
+ * @invar The row index is larger than 0 and smaller than the height of the map.
+ * 		| getRowIndex() >= 0 && getRowIndex() < getMazeMap().getHeight()
+ * @invar The column index is larger than 0 and smaller than the width of the map.
+ * 		| getColumnIndex() >= 0 && getColumnIndex() < getMazeMap().getWidth()
  */
+
 public class Square {
 	
+	/**
+	 * 
+	 */
 	private MazeMap mazeMap;
-	private int row;
-	private int col;
+	private int rowIndex;
+	private int columnIndex;
     
 	
 	public MazeMap getMazeMap() { return this.mazeMap; }
 	
-	public int getRowIndex() { return this.row; }
+	public int getRowIndex() { return this.rowIndex; }
 	
-	public int getColumnIndex() { return this.col; }
+	public int getColumnIndex() { return this.columnIndex; }
 	
-	public boolean isPassable() { return mazeMap.isPassable(row, col); }
+	public boolean isPassable() { return mazeMap.isPassable(rowIndex, columnIndex); }
 	
 	public static Square of(MazeMap mazeMap, int rowIndex, int columnIndex) {
 		throw new RuntimeException("Not yet implemented");

@@ -4,16 +4,25 @@ import java.util.Random;
 
 /**
  * Each instance of this class represents a ghost in a Pac-Man maze.
+ * 
+ * @invar The square cannot be null.
+ * 		| getSquare() != null
+ * @invar The direction of the ghost cannot be null.
+ * 		| getDirection() != null
  */
+
 public class Ghost {
 	
-	// QUESTION --> hoe zit het met de precondities van deze klasses? Hoe moet je dat gaan noteren?
+	/**
+	 * @invar | square != null
+	 * @invar | direction != null
+	 */
 	private Square square;
 	private Direction direction;
 	
-	// QUESTION --> moet je postcondities schrijven voor een basic getter?
+	
 	/**
-	 * Returns the square that the ghost is on. 
+	 * Returns the square that the ghost is on.  		
 	 * @basic 
 	 */
 	public Square getSquare() { return square; }
@@ -27,6 +36,10 @@ public class Ghost {
 	/**
 	 * Initializes the instance of this class with the given square and direction.
 	 * 
+	 * @throws IllegalArgumentException if the given square is null.
+	 * 		| square == null
+	 * @throws IllegalArgumentException if the given direction is null.
+	 * 		| direction == null
 	 * @post The square equals the given square.
 	 * 		|square == getSquare()
 	 * @post The direction equals the given direction.
@@ -34,7 +47,11 @@ public class Ghost {
 	 * 
 	 */
 	public Ghost(Square square, Direction direction) {
-		
+		if(square == null)
+			throw new IllegalArgumentException("square is null");
+		if(direction == null)
+			throw new IllegalArgumentException("direction is null");
+
 		this.square = square;
 		this.direction = direction;
 	}
@@ -42,29 +59,36 @@ public class Ghost {
 	/**
 	 * Changes the value of square to the given square.
 	 * 
+	 * @throws IllegalArgumentException if the given square is null.
+	 * 		| square == null
 	 * @post square equals the given square.
 	 * 		| square == getSquare()
 	 * @post direction remains unchanged.
 	 * 		| old(getDirection()) == getDirection()
 	 * 
-	 * 
-	 * 
 	 */
 	public void setSquare(Square square) {
+		if(square == null)
+			throw new IllegalArgumentException("square is null");
+		
 		this.square = square;
 		}
 	
 	/**
 	 * Changes the value of direction to the given direction.
 	 * 
+	 * @throws IllegalArgumentException if the given direction is null.
+	 * 		| direction == null
 	 * @post direction equals the given direction.
 	 * 		| direction == getDirection()
 	 * @post square remains unchanged.
 	 * 		| old(getSquare()) == getSquare()
 	 * 
-	 * 
 	 */
 	public void setDirection(Direction direction) { 
+		if(direction == null)
+			throw new IllegalArgumentException("direction is null");
+		
 		this.direction = direction; 
 		}
 	
