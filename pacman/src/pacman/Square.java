@@ -6,17 +6,11 @@ import java.util.Arrays;
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
  * The top row and the leftmost column have index 0.
  * 
- * @invar The row index is larger than 0 and smaller than the height of the map.
- * 		| getRowIndex() >= 0 && getRowIndex() < getMazeMap().getHeight()
- * @invar The column index is larger than 0 and smaller than the width of the map.
- * 		| getColumnIndex() >= 0 && getColumnIndex() < getMazeMap().getWidth()
+ * TODO: invarianten bepalen!
  */
-
+ 
 public class Square {
 	
-	/**
-	 * 
-	 */
 	private MazeMap mazeMap;
 	private int rowIndex;
 	private int columnIndex;
@@ -46,20 +40,11 @@ public class Square {
 	 * Returns whether the square in this maze is passable.
 	 * The square in the top-left corner of the maze has row index 0 and column index 0.
 	 * 
-	 * @throws IllegalArgumentException if the given row index is negative or greater than or equal to the height.
-	 * 		| getRowIndex() < 0 || getRowIndex() >= getMazeMap().getHeight()
-	 * @throws IllegalArgumentException if the given column index is negative or greater than or equal to the width.
-	 * 		| getColumnIndex() < 0 || getColumnIndex() >= getMazeMap().getWidth()
 	 * @basic
 	 * 
 	 */
 	public boolean isPassable() { 
-		if (rowIndex < 0 || rowIndex >= mazeMap.getHeight()) {
-			throw new IllegalArgumentException("Invalid row index");
-		}
-		if (columnIndex < 0 || rowIndex >= mazeMap.getWidth()) {
-			throw new IllegalArgumentException("Invalid column index");
-		}
+		
 		return mazeMap.isPassable(rowIndex, columnIndex); 
 		}
 	/**
@@ -110,12 +95,11 @@ public class Square {
 		if(direction == null)
 			throw new IllegalArgumentException("invalid direction");
 		
-		final int width = mazeMap.getWidth();
-		final int height = mazeMap.getHeight();
+		int width = mazeMap.getWidth();
+		int height = mazeMap.getHeight();
 		
 		Square neighbor = new Square();
-		
-	
+		neighbor.mazeMap = mazeMap;
 	    switch (direction) {
 	        case RIGHT:
 	            neighbor.rowIndex = rowIndex;
@@ -154,7 +138,7 @@ public class Square {
 	 */
 	// No formal documentation required
 	public Direction[] getPassableDirectionsExcept(Direction excludedDirection) {
-		Direction[] passableDirections = null;
+		Direction[] passableDirections = new Direction[0];
 		
 		for (Direction direction : Direction.values()){ 
 			if(direction == excludedDirection)
@@ -181,6 +165,7 @@ public class Square {
 	 * 		| other == null
 	 * @post result is true if this square is the same as the given square, is false if they are not the same.
 	 * 		| result == (getRowIndex() == other.getRowIndex()) && (getColumnIndex() == other.getColumnIndex()) && (getMazeMap() == other.getMazeMap())
+	 * @inspects | this
 	 * 
 	 */
 	public boolean equals(Square other) {
