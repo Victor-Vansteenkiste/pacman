@@ -76,5 +76,6 @@ public class PacManTest {
 		assert pacman.getNbLives() == 0;
 		
 		
+		
 	}
 }
