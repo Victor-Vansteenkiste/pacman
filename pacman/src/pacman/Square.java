@@ -118,7 +118,7 @@ public class Square {
 	            neighbor.columnIndex = columnIndex;
 	            return neighbor;
 	        default:
-	        	return neighbor;
+	        	throw new IllegalArgumentException("invalid direction"); 	
 	    }
 	    
 	}
@@ -172,11 +172,11 @@ public class Square {
 		if(other == null)
 			throw new IllegalArgumentException("The given square is null");
 
-		if(mazeMap != other.mazeMap)
+		if(mazeMap != other.getMazeMap())
 			return false;
-		if(rowIndex != other.rowIndex)
+		if(rowIndex != other.getRowIndex())
 			return false;
-		if(columnIndex != other.columnIndex)
+		if(columnIndex != other.getColumnIndex())
 			return false;
 		return true;
 	}
