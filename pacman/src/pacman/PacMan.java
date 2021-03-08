@@ -36,6 +36,10 @@ public class PacMan {
 	 * 		| getSquare() == square
 	 */
 	public PacMan(int nbLives, Square square) {
+		if(square == null) 
+			throw new IllegalArgumentException("square is null");
+		if(nbLives < 0) 
+			throw new IllegalArgumentException("lives is smaller than 0");
 		this.nbLives = nbLives;
 	    this.square = square;
 	}
@@ -51,7 +55,11 @@ public class PacMan {
 	 * @post the number of lives has remained unchanged.
 	 * 		| old(getNbLives()) == getNbLives()
 	 */
-	public void setSquare(Square square) { this.square = square; }
+	public void setSquare(Square square) { 
+		if(square == null) 
+			throw new IllegalArgumentException("square is null");
+		this.square = square; 
+		}
 	
 	/**
 	 * Decreases this Pac-Man character's number of lives by one.

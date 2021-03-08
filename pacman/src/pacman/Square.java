@@ -128,6 +128,8 @@ public class Square {
 	 */
 	// No formal documentation required
 	public boolean canMove(Direction direction) {
+		if(direction == null) 
+			throw new IllegalArgumentException("invalid direction");
 		Square to = getNeighbor(direction);
 		return to.isPassable();
 	}
