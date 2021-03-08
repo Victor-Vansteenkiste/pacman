@@ -5,29 +5,29 @@ package pacman;
  */
 public class PacMan {
 	
-	public int lives;
-	public Square square;
+	private int nbLives;
+	private Square square;
 	
-	public Square getSquare() { return this.square; }
+	public Square getSquare() { return square; }
 	
-	public int getNbLives() { return this.lives; }
+	public int getNbLives() { return nbLives; }
 
 	public PacMan(int nbLives, Square square) {
-		this.lives = nbLives;
+		this.nbLives = nbLives;
 	    this.square = square;
 	}
 	
-	public void setSquare(Square square) { throw new RuntimeException("Not yet implemented"); }
+	public void setSquare(Square square) { this.square = square; }
 	
 	/**
 	 * Decreases this Pac-Man character's number of lives by one.
 	 */
 	public void die() {
-	   if (this.lives < 1) {
+	   if (nbLives < 1) {
 		   throw new IllegalStateException();
 	   }
 	   else {
-		   this.lives -= 1;
+		   nbLives -= 1;
 	   }
 	}
 }
