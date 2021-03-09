@@ -32,7 +32,7 @@ public class Ghost {
 	 * @basic
 	 */
 	public Direction getDirection() { return direction; }
-	
+	 
 	/**
 	 * Initializes the instance of this class with the given square and direction.
 	 * 
