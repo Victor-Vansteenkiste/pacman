@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class PacManTest {
-
+ 
 	@Test
 	void test() {
 		MazeMap testMazeMap = new MazeMap(3, 3, new boolean[] {true, true, false, true, false, false, true, true, false});

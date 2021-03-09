@@ -4,21 +4,29 @@ package pacman;
  * Each instance of this class represents the player-controlled Pac-Man character in a Pac-Man maze.
  */
 public class PacMan {
-	
+	 
+	/**
+	 * @invar the number of lives can't be negative.
+	 * 		| nbLives >= 0
+	 * @invar square cannot be null.
+	 * 		| square != null
+	 */
 	private int nbLives;
+	
+	/**
+	 * @representationobject
+	 */
 	private Square square;
 	
 	/**
-	 * Returns the square.
+	 * Returns the square
 	 * @basic
-	 * 
 	 */
 	public Square getSquare() { return square; }
 	
 	/**
 	 * Returns the number of lives that the Pac-man still has.
 	 * @basic
-	 * 
 	 */
 	public int getNbLives() { return nbLives; }
 
