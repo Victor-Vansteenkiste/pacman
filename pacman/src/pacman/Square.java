@@ -7,34 +7,22 @@ import java.util.stream.IntStream;
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
  * The top row and the leftmost column have index 0.
  * 
- * @invar mazeMap is not null.
- * 		| getMazeMap() != null
- * @invar The row index of the square is not negative and not greater than the height of the maze map.
- * 		| getRowIndex() >= 0 && getRowIndex() < getMazeMap().getHeight()
- * @invar The column index of the square is not negative and not greater than the width of the maze map.
- * 		| getColumnIndex() >= 0 && getColumnIndex() < getMazeMap().getWidth()
+ *
  */
  
 public class Square {
-	/**
-	 * @invar maze map is not null.
-	 * 		| mazeMap != null
-	 * @invar The row index of the square is not negative and not greater than the height of the maze map.
-	 * 		| rowIndex >= 0 && rowIndex < mazeMap.getHeight()
-	 * @invar The column index of the square is not negative and not greater than the width of th maze map.
-	 * 		| columnIndex >= 0 && columnIndex < mazeMap.getWidth()
-	 * 
-	 */
 	
 	/**
 	 * @representationobject
 	 */
-	private MazeMap mazeMap;
+	private MazeMap mazeMap ;
 	private int rowIndex;
 	private int columnIndex;
     
 	/**
 	 * Returns the maze map.
+	 * 
+	 * @throws 
 	 * @basic
 	 */
 	

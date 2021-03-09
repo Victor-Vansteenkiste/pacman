@@ -44,7 +44,7 @@ public class Ghost {
 	 * 		|square == getSquare()
 	 * @post The direction equals the given direction.
 	 * 		|direction == getDirection()
-	 * 
+	 *  
 	 */
 	public Ghost(Square square, Direction direction) {
 		if(square == null)

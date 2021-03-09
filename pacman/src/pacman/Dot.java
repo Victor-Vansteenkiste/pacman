@@ -2,13 +2,22 @@ package pacman;
 
 /**
  * Each instance of this class represents a dot (a piece of food for Pac-Man) in a Pac-Man maze.
- */ 
+ * @invar Square is not null.
+ * 		| getSquare() != null
+ */  
 public class Dot {
 	/**
-	 * representationobject
+	 * @invar Square is not null.
+	 * 		| square != null
+	 * @representationobject
 	 */
 	private Square square;
 	
+	/**
+	 * Return the square of the object.
+	 * @basic
+	 * 
+	 */
 	public Square getSquare() { return square; }
 	
 	/**

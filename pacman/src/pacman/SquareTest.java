@@ -6,18 +6,17 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
   
 class SquareTest {
-
+ 
 	@Test
 	void test() {
-		MazeMap testMazeMap = new MazeMap(3, 3, new boolean[] {true, false, false, true, true, false, false, true, true});
+		MazeMap testMazeMap1 = new MazeMap(3, 3, new boolean[] {true, false, false, true, true, false, false, true, true});
 		MazeMap testMazeMap2 = new MazeMap(1,1, new boolean[] {true});
-		Square testSquare = Square.of(testMazeMap, 0, 0);
-		Square equalSquare = Square.of(testMazeMap, 0, 0);
-		Square differentRowSquare = Square.of(testMazeMap, 1, 0);
-		Square differentColumnSquare = Square.of(testMazeMap, 0, 1);
+		Square testSquare = Square.of(testMazeMap1, 0, 0);
+		Square equalSquare = Square.of(testMazeMap1, 0, 0);
+		Square differentRowSquare = Square.of(testMazeMap1, 1, 0);
+		Square differentColumnSquare = Square.of(testMazeMap1, 0, 1);
 		Square differentMapSquare = Square.of(testMazeMap2, 0, 0);
 			
-		
 		assert testSquare.equals(equalSquare);
 		assert testSquare.equals(differentRowSquare) == false;
 		assert testSquare.equals(differentColumnSquare) == false;
@@ -28,9 +27,10 @@ class SquareTest {
 		assert testSquare.canMove(Direction.RIGHT) == false;
 		assert testSquare.getRowIndex() == 0;
 		assert testSquare.getColumnIndex() == 0;
+		
 		Assert.assertArrayEquals(testSquare.getPassableDirectionsExcept(Direction.UP), new Direction[] {Direction.DOWN});
-		Square testSquare2 = Square.of(testMazeMap, 1, 1);
-		Square testSquare3 = Square.of(testMazeMap, 1, 2);
+		Square testSquare2 = Square.of(testMazeMap1, 1, 1);
+		Square testSquare3 = Square.of(testMazeMap1, 1, 2);
 		Assert.assertArrayEquals(testSquare2.getPassableDirectionsExcept(Direction.UP), new Direction[] {Direction.DOWN, Direction.LEFT});
 		Assert.assertArrayEquals(testSquare3.getPassableDirectionsExcept(Direction.UP), new Direction[] {Direction.RIGHT, Direction.DOWN, Direction.LEFT});
 		Square testNeighborRight = testSquare3.getNeighbor(Direction.RIGHT);
