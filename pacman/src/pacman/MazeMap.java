@@ -54,13 +54,15 @@ public class MazeMap {
 	 * @throws IllegalArgumentException if the given column index is negative or greater than or equal to the width.
 	 * 		| columnIndex < 0 || columnIndex >= getWidth()
 	 * @basic
+	 * @inspects | this
 	 * 
-	 */
+	 */ 
 	public boolean isPassable(int rowIndex, int columnIndex) {
 		if(rowIndex < 0 || rowIndex >= height)
 			throw new IllegalArgumentException("Invalid row index");
 		if(columnIndex < 0 || columnIndex >= width)
 			throw new IllegalArgumentException("Invalid column index");
+		
 		return passable[width * rowIndex + columnIndex];
 	}
 	
@@ -97,7 +99,7 @@ public class MazeMap {
 			throw new IllegalArgumentException("passable is null");
 		if(passable.length != width * height)
 			throw new IllegalArgumentException("Invalid length for passable");
-
+ 
 		this.width = width;
 		this.height = height;
 		this.passable = passable;

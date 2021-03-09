@@ -21,7 +21,7 @@ import pacman.Ghost;
 import pacman.Maze;
 import pacman.MazeDescriptions;
 import pacman.MazeMap;
-
+ 
 public class MazeView extends JPanel {
 	
 	private static int squareSize = 30;

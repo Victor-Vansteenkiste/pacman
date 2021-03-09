@@ -10,7 +10,7 @@ import java.util.Random;
  * @invar The direction of the ghost cannot be null.
  * 		| getDirection() != null
  */
-
+ 
 public class Ghost {
 	
 	/**

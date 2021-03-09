@@ -1,6 +1,7 @@
 package pacman;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
@@ -74,7 +75,7 @@ public class Square {
 		if (rowIndex < 0 || rowIndex >= mazeMap.getHeight()) 
 			throw new IllegalArgumentException("Invalid row index");
 		
-		if (columnIndex < 0 || rowIndex >= mazeMap.getWidth()) 
+		if (columnIndex < 0 || columnIndex >= mazeMap.getWidth()) 
 			throw new IllegalArgumentException("Invalid column index");
 		
 	
@@ -146,34 +147,42 @@ public class Square {
 			if(direction == excludedDirection)
 				continue;
 			Square neighbor = getNeighbor(direction);
-			if(neighbor.isPassable()) {
-				Direction[] addDirection = new Direction[passableDirections.length + 1];
-				for(int i = 0; i < passableDirections.length; i++)
-					addDirection[i] = passableDirections[i];
-				addDirection[passableDirections.length] = direction;
-				passableDirections = addDirection;
-			}
+			if(neighbor.isPassable()) 
+				passableDirections = updatePassableDirections(passableDirections, direction);
+			
 		}
-				
 		return passableDirections.clone();
 	}
+	
+	private Direction[] updatePassableDirections(Direction[] passableDirections, Direction newDirection) {
+		Direction[] newPassableDirections = new Direction[passableDirections.length + 1];
+		
+		for(int i = 0; i < passableDirections.length; i++)
+			newPassableDirections[i] = passableDirections[i];
+		newPassableDirections[passableDirections.length] = newDirection;
+		
+		return newPassableDirections;
+		
+		
+	}
 				
-				
+			
 		
 	/**
 	 * Returns whether the given square refers to the same {@code MazeMap} object and has the same row and column index as this square.  
 	 * 
 	 * @throws IllegalArgumentException if other is null.
 	 * 		| other == null
-	 * @post result is true if this square is the same as the given square, is false if they are not the same.
-	 * 		| result == (getRowIndex() == other.getRowIndex()) && (getColumnIndex() == other.getColumnIndex()) && (getMazeMap() == other.getMazeMap())
+	 * @post the result is true if the maze maps are the same and if the row and column index are the same for the 2 squares.
+	 * 		| result == ((getMazeMap() == other.getMazeMap()) && getRowIndex() == other.getRowIndex() && (getColumnIndex() == other.getColumnIndex()))
+	 * 		
 	 * @inspects | this
 	 * 
 	 */
 	public boolean equals(Square other) {
 		if(other == null)
 			throw new IllegalArgumentException("The given square is null");
-
+		
 		if(mazeMap != other.getMazeMap())
 			return false;
 		if(rowIndex != other.getRowIndex())
@@ -181,8 +190,8 @@ public class Square {
 		if(columnIndex != other.getColumnIndex())
 			return false;
 		return true;
-	}
 	
+	}
 }
 
 

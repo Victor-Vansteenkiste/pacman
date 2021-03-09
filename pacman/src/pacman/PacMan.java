@@ -63,7 +63,7 @@ public class PacMan {
 	 * @post the square remains unchanged.
 	 * 		| old(getSquare()) == getSquare()
 	 * @mutates |this
-	 */
+	 */ 
 	public void die() {
 	   if (nbLives < 1) {
 		   throw new IllegalStateException();
