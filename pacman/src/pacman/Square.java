@@ -7,11 +7,28 @@ import java.util.stream.IntStream;
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
  * The top row and the leftmost column have index 0.
  * 
- * TODO: invarianten bepalen!
+ * @invar mazeMap is not null.
+ * 		| getMazeMap() != null
+ * @invar The row index of the square is not negative and not greater than the height of the maze map.
+ * 		| getRowIndex() >= 0 && getRowIndex() < getMazeMap().getHeight()
+ * @invar The column index of the square is not negative and not greater than the width of the maze map.
+ * 		| getColumnIndex() >= 0 && getColumnIndex() < getMazeMap().getWidth()
  */
  
 public class Square {
+	/**
+	 * @invar maze map is not null.
+	 * 		| mazeMap != null
+	 * @invar The row index of the square is not negative and not greater than the height of the maze map.
+	 * 		| rowIndex >= 0 && rowIndex < mazeMap.getHeight()
+	 * @invar The column index of the square is not negative and not greater than the width of th maze map.
+	 * 		| columnIndex >= 0 && columnIndex < mazeMap.getWidth()
+	 * 
+	 */
 	
+	/**
+	 * @representationobject
+	 */
 	private MazeMap mazeMap;
 	private int rowIndex;
 	private int columnIndex;
@@ -40,14 +57,13 @@ public class Square {
 	/**
 	 * Returns whether the square in this maze is passable.
 	 * The square in the top-left corner of the maze has row index 0 and column index 0.
-	 * 
 	 * @basic
-	 * 
 	 */
 	public boolean isPassable() { 
 		
 		return mazeMap.isPassable(rowIndex, columnIndex); 
 		}
+	
 	/**
 	 * Initializes this object so that it represents a square with the given mazeMap, rowIndex, and
 	 * columnIndex. The passable positions are given in row-major order (i.e. the first {@code width} elements
@@ -154,6 +170,10 @@ public class Square {
 		return passableDirections.clone();
 	}
 	
+	/**
+	 * Private method that adds a direction to the array of directions.
+	 * 
+	 */
 	private Direction[] updatePassableDirections(Direction[] passableDirections, Direction newDirection) {
 		Direction[] newPassableDirections = new Direction[passableDirections.length + 1];
 		
@@ -166,7 +186,7 @@ public class Square {
 		
 	}
 				
-			
+			 
 		
 	/**
 	 * Returns whether the given square refers to the same {@code MazeMap} object and has the same row and column index as this square.  
@@ -175,7 +195,12 @@ public class Square {
 	 * 		| other == null
 	 * @post the result is true if the maze maps are the same and if the row and column index are the same for the 2 squares.
 	 * 		| result == ((getMazeMap() == other.getMazeMap()) && getRowIndex() == other.getRowIndex() && (getColumnIndex() == other.getColumnIndex()))
-	 * 		
+	 * @post the maze map of this object remains unchanged.
+	 * 		| getMazeMap() == old(getMazeMap())
+	 * @post the row index of this object remains unchanged.
+	 * 		| getRowIndex() == old(getRowIndex())
+	 * @post the column index of this object remains unchanged.
+	 * 		| getColumnIndex() == old(getColumnIndex())	
 	 * @inspects | this
 	 * 
 	 */
