@@ -49,7 +49,7 @@ public class Square {
 	 */
 	public boolean isPassable() { 
 		
-		return mazeMap.isPassable(rowIndex, columnIndex); 
+		return mazeMap.isPassable(rowIndex, columnIndex);  
 		}
 	
 	/**
@@ -108,18 +108,18 @@ public class Square {
 	    switch (direction) {
 	        case RIGHT:
 	            neighbor.rowIndex = rowIndex;
-	            neighbor.columnIndex = (java.lang.Math.floorMod(columnIndex+1,height));
+	            neighbor.columnIndex = (java.lang.Math.floorMod(columnIndex+1,width));
 	            return neighbor;
 	        case LEFT:
 	        	neighbor.rowIndex = rowIndex;
-	            neighbor.columnIndex = (java.lang.Math.floorMod(columnIndex-1,height));
+	            neighbor.columnIndex = (java.lang.Math.floorMod(columnIndex-1,width));
 	            return neighbor;
 	        case UP:
-	        	neighbor.rowIndex = (java.lang.Math.floorMod(rowIndex-1,width));
+	        	neighbor.rowIndex = (java.lang.Math.floorMod(rowIndex-1,height));
 	            neighbor.columnIndex = columnIndex;
 	            return neighbor;
 	        case DOWN:
-	        	neighbor.rowIndex = (java.lang.Math.floorMod(rowIndex+1,width));
+	        	neighbor.rowIndex = (java.lang.Math.floorMod(rowIndex+1,height));
 	            neighbor.columnIndex = columnIndex;
 	            return neighbor;
 	        default:

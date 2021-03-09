@@ -10,7 +10,7 @@ public class Maze {
 	private PacMan pacMan;
 	private Ghost[] ghosts;
 	private Dot[] dots;
-	
+	 
 	public MazeMap getMap() { return map; }
 	
 	public PacMan getPacMan() { return pacMan; }

@@ -102,7 +102,7 @@ public class MazeView extends JPanel {
 		maze.movePacMan(direction);
 		mazeChanged();
 	}
-	
+	 
 	public MazeView() {
 		initializeMaze();
 		setBackground(Color.black);

@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
   
 class SquareTest {
- 
+  
 	@Test
 	void test() {
 		MazeMap testMazeMap1 = new MazeMap(3, 3, new boolean[] {true, false, false, true, true, false, false, true, true});
@@ -34,9 +34,13 @@ class SquareTest {
 		Assert.assertArrayEquals(testSquare2.getPassableDirectionsExcept(Direction.UP), new Direction[] {Direction.DOWN, Direction.LEFT});
 		Assert.assertArrayEquals(testSquare3.getPassableDirectionsExcept(Direction.UP), new Direction[] {Direction.RIGHT, Direction.DOWN, Direction.LEFT});
 		Square testNeighborRight = testSquare3.getNeighbor(Direction.RIGHT);
+		assert testNeighborRight.getRowIndex() == 1;
+		assert testNeighborRight.getColumnIndex() == 0;
+		assert testNeighborRight.isPassable() == true;
 		Square testNeighborLeft = testSquare3.getNeighbor(Direction.LEFT);
 		Square testNeighborUp = testSquare3.getNeighbor(Direction.UP);
 		Square testNeighborDown = testSquare3.getNeighbor(Direction.DOWN);
+		
 		
 		
 	}

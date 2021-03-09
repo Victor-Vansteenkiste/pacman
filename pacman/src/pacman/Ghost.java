@@ -56,7 +56,7 @@ public class Ghost {
 		this.direction = direction;
 	}
 	
-	/**
+	/** 
 	 * Changes the value of square to the given square.
 	 * 
 	 * @throws IllegalArgumentException if the given square is null.

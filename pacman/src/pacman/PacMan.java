@@ -2,6 +2,11 @@ package pacman;
 
 /**
  * Each instance of this class represents the player-controlled Pac-Man character in a Pac-Man maze.
+ * 
+ * @invar the number of lives cannot be a negative number.
+ * 		| getNbLives() >= 0
+ * @invar the square cannot be null.
+ * 		| getSquare() != null
  */
 public class PacMan {
 	 
@@ -47,7 +52,7 @@ public class PacMan {
 		this.nbLives = nbLives;
 	    this.square = square;
 	}
-	
+	 
 	/**
 	 * Sets the value of square with the given square.
 	 * 

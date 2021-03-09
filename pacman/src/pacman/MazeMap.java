@@ -62,7 +62,7 @@ public class MazeMap {
 			throw new IllegalArgumentException("Invalid row index");
 		if(columnIndex < 0 || columnIndex >= width)
 			throw new IllegalArgumentException("Invalid column index");
-		
+		 
 		return passable[width * rowIndex + columnIndex];
 	}
 	
@@ -102,6 +102,7 @@ public class MazeMap {
  
 		this.width = width;
 		this.height = height;
-		this.passable = passable;
+		this.passable = passable.clone();
+		
 	}
 }
