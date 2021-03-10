@@ -4,12 +4,12 @@ package pacman;
  * Each instance of this class represents a dot (a piece of food for Pac-Man) in a Pac-Man maze.
  * @invar Square is not null.
  * 		| getSquare() != null
- */   
+ * @immutable
+ */    
 public class Dot {
 	/**
 	 * @invar Square is not null.
 	 * 		| square != null
-	 * @representationobject
 	 */
 	private Square square;
 	
