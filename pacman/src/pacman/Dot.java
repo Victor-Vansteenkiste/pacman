@@ -25,7 +25,7 @@ public class Dot {
 	 * 
 	 * @throws IllegalArgumentException if the given square is null.
 	 * 		| square == null
-	 * 
+	 *  
 	 * @post the square of the instance equals the given square.
 	 * 		| getSquare() == square
 	 */

@@ -7,6 +7,7 @@ package pacman;
  * 		| getNbLives() >= 0
  * @invar the square cannot be null.
  * 		| getSquare() != null
+ * @mutable
  */
 public class PacMan {
 	 
@@ -17,16 +18,12 @@ public class PacMan {
 	 * 		| square != null
 	 */
 	private int nbLives;
-	
-	/**
-	 * @representationobject
-	 */
 	private Square square;
 	
 	/**
 	 * Returns the square
 	 * @basic
-	 */
+	 */ 
 	public Square getSquare() { return square; }
 	
 	/**
@@ -42,7 +39,7 @@ public class PacMan {
 	 * 		| nbLives < 0
 	 * @throws IllegalArgumentException if the given square is null.
 	 * 		| square == null
-	 * 
+	 *  
 	 * @post The number of lives of the object equals the given number of lives.
 	 * 		| getNbLives() == nbLives
 	 * @post The square of this object equals the given square.

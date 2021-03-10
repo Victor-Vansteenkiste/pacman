@@ -2,7 +2,7 @@ package pacman;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
-
+ 
 /**
  * Each instance of this class represents a maze layout, specifying the width and height of the maze
  * and, for each position in the maze, whether it is passable or not.
