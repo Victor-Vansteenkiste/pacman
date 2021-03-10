@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
  * The top row and the leftmost column have index 0.
  * 
- *
+ * @immutable
  */
  
 public class Square {
@@ -22,7 +22,6 @@ public class Square {
 	/**
 	 * Returns the maze map.
 	 * 
-	 * @throws 
 	 * @basic
 	 */
 	

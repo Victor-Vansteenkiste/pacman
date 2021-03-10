@@ -9,13 +9,18 @@ import java.util.Random;
  * 		| getSquare() != null
  * @invar The direction of the ghost cannot be null.
  * 		| getDirection() != null
+ * 
+ * @mutable
  */
  
 public class Ghost {
 	
 	/**
-	 * @invar | square != null
-	 * @invar | direction != null
+	 * @invar The square cannot be null. 
+	 *		| square != null
+	 * @invar The direction cannot be null
+	 *		| direction != null 
+	 *
 	 */
 	private Square square;
 	private Direction direction;
@@ -55,7 +60,7 @@ public class Ghost {
 		this.square = square;
 		this.direction = direction;
 	}
-	
+	 
 	/** 
 	 * Changes the value of square to the given square.
 	 * 
