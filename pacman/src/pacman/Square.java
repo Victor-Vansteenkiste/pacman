@@ -7,21 +7,33 @@ import java.util.stream.IntStream;
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
  * The top row and the leftmost column have index 0.
  * 
+ * @invar The row index cannot be negative and cannot be greater than the height of the maze map.
+ * 		| getRowIndex() >= 0 && getRowIndex() < getMazeMap().getHeight()
+ * @invar The column index cannot be negative and cannot be greater than the width of the maze map.
+ * 		| getColumnIndex() >= 0 && getColumnIndex() < getMazeMap().getWidth()
+ * @invar The maze map is not null.
+ * 		| getMazeMap() != null
+ * 
  * @immutable
  */
  
 public class Square {
 	
 	/**
-	 * @representationobject
+	 * @invar The row index cannot be negative and cannot be greater than the height of the maze map.
+	 * 		| rowIndex >= 0 
+	 * @invar The column index cannot be negative and cannot be greater than the width of the maze map.
+	 * 		| columnIndex >= 0 
+	 * @invar The maze map is not null.
+	 * 		| mazeMap != null
+	 * 
 	 */
-	private MazeMap mazeMap ;
-	private int rowIndex;
-	private int columnIndex;
+	private final MazeMap mazeMap ;
+	private final int rowIndex;
+	private final int columnIndex;
     
 	/**
 	 * Returns the maze map.
-	 * 
 	 * @basic
 	 */
 	
@@ -51,7 +63,15 @@ public class Square {
 		return mazeMap.isPassable(rowIndex, columnIndex);  
 		}
 	
+	// PRIVATE CONSTRUCTOR
+	private Square(MazeMap mazeMap, int rowIndex, int columnIndex) {
+		this.mazeMap = mazeMap;
+		this.rowIndex = rowIndex;
+		this.columnIndex = columnIndex;
+	}
+	
 	/**
+	 * 
 	 * Initializes this object so that it represents a square with the given mazeMap, rowIndex, and
 	 * columnIndex. The passable positions are given in row-major order (i.e. the first {@code width} elements
 	 * of {@code passable} specify the passability of the maze positions in the first row of the maze). 
@@ -82,13 +102,11 @@ public class Square {
 			throw new IllegalArgumentException("Invalid column index");
 		
 	
-		Square newSquare = new Square();
-		newSquare.rowIndex = rowIndex;
-		newSquare.columnIndex = columnIndex;
-		newSquare.mazeMap = mazeMap;
-		
+		Square newSquare = new Square(mazeMap, rowIndex, columnIndex);
 		return newSquare;
 	}
+
+
 	
 	/**
 	 * Returns this square's neighbor in the given direction.
@@ -101,26 +119,30 @@ public class Square {
 		
 		int width = mazeMap.getWidth();
 		int height = mazeMap.getHeight();
+		int rowIndexNeighbor;
+		int columnIndexNeighbor;
 		
-		Square neighbor = new Square();
-		neighbor.mazeMap = mazeMap;
 	    switch (direction) {
 	        case RIGHT:
-	            neighbor.rowIndex = rowIndex;
-	            neighbor.columnIndex = (java.lang.Math.floorMod(columnIndex+1,width));
-	            return neighbor;
+	            rowIndexNeighbor = rowIndex;
+	            columnIndexNeighbor = (java.lang.Math.floorMod(columnIndex+1,width));
+	            Square neighborSquareRight = new Square(mazeMap, rowIndexNeighbor, columnIndexNeighbor);
+	            return neighborSquareRight;
 	        case LEFT:
-	        	neighbor.rowIndex = rowIndex;
-	            neighbor.columnIndex = (java.lang.Math.floorMod(columnIndex-1,width));
-	            return neighbor;
+	        	rowIndexNeighbor = rowIndex;
+	        	columnIndexNeighbor = (java.lang.Math.floorMod(columnIndex-1,width));
+	        	Square neighborSquareLeft = new Square(mazeMap, rowIndexNeighbor, columnIndexNeighbor);
+	            return neighborSquareLeft;
 	        case UP:
-	        	neighbor.rowIndex = (java.lang.Math.floorMod(rowIndex-1,height));
-	            neighbor.columnIndex = columnIndex;
-	            return neighbor;
+	        	rowIndexNeighbor = (java.lang.Math.floorMod(rowIndex-1,height));
+	            columnIndexNeighbor = columnIndex;
+	            Square neighborSquareUp = new Square(mazeMap, rowIndexNeighbor, columnIndexNeighbor);
+	            return neighborSquareUp;
 	        case DOWN:
-	        	neighbor.rowIndex = (java.lang.Math.floorMod(rowIndex+1,height));
-	            neighbor.columnIndex = columnIndex;
-	            return neighbor;
+	        	rowIndexNeighbor = (java.lang.Math.floorMod(rowIndex+1,height));
+	            columnIndexNeighbor = columnIndex;
+	            Square neighborSquareDown = new Square(mazeMap, rowIndexNeighbor, columnIndexNeighbor);
+	            return neighborSquareDown;
 	        default:
 	        	throw new IllegalArgumentException("invalid direction"); 	
 	    }

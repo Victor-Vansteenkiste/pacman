@@ -9,6 +9,7 @@ class SquareTest {
   
 	@Test
 	void test() {
+		// Creates number of testSquares
 		MazeMap testMazeMap1 = new MazeMap(3, 3, new boolean[] {true, false, false, true, true, false, false, true, true});
 		MazeMap testMazeMap2 = new MazeMap(1,1, new boolean[] {true});
 		Square testSquare = Square.of(testMazeMap1, 0, 0);
@@ -17,17 +18,19 @@ class SquareTest {
 		Square differentColumnSquare = Square.of(testMazeMap1, 0, 1);
 		Square differentMapSquare = Square.of(testMazeMap2, 0, 0);
 			
+		// Tests the method equals()
 		assert testSquare.equals(equalSquare);
 		assert testSquare.equals(differentRowSquare) == false;
 		assert testSquare.equals(differentColumnSquare) == false;
 		assert testSquare.equals(differentMapSquare) == false;
 		
-		
+		// Tests the methods: isPassable, canMove, getRowIndex, getColumnIndex
 		assert testSquare.isPassable() == true;
 		assert testSquare.canMove(Direction.RIGHT) == false;
 		assert testSquare.getRowIndex() == 0;
 		assert testSquare.getColumnIndex() == 0;
 		
+		// Tests for the method getNeighbor()
 		Assert.assertArrayEquals(testSquare.getPassableDirectionsExcept(Direction.UP), new Direction[] {Direction.DOWN});
 		Square testSquare2 = Square.of(testMazeMap1, 1, 1);
 		Square testSquare3 = Square.of(testMazeMap1, 1, 2);
