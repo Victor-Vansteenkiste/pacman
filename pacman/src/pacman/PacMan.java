@@ -7,7 +7,6 @@ package pacman;
  * 		| getNbLives() >= 0
  * @invar the square cannot be null.
  * 		| getSquare() != null
- * @mutable
  */
 public class PacMan {
 	 
