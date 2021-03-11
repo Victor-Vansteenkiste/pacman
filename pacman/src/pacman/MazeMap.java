@@ -10,7 +10,8 @@ import java.util.stream.IntStream;
  * @invar The width is not negative.
  * 		| getWidth() >= 0
  * @invar The height is not negative.
- * 		| getHeight() >= 0		
+ * 		| getHeight() >= 0	
+ * @immutable	
  */
 public class MazeMap {
 	
@@ -25,13 +26,13 @@ public class MazeMap {
 	 * 		| passable != null
 	 * 
 	 */
-	private int width;
-	private int height;
+	private final int width;
+	private final int height;
 	/**
 	 * An array of boolean values to represent the passable fields of the map (in row-major order)
 	 * @representationobject
 	 */
-	private boolean[] passable;
+	private final boolean[] passable;
 
 	/**
 	 * Returns the width (i.e. the number of columns) of this maze map.

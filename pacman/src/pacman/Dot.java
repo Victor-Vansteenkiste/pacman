@@ -11,7 +11,7 @@ public class Dot {
 	 * @invar Square is not null.
 	 * 		| square != null
 	 */
-	private Square square;
+	private final Square square;
 	
 	/**
 	 * Return the square of the object.
