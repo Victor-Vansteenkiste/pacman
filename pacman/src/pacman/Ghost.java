@@ -115,4 +115,8 @@ public class Ghost {
 		setDirection(chooseNextMoveDirection(random));
 		setSquare(getSquare().getNeighbor(getDirection()));
 	}
+	
+	public boolean isVulnerable() {
+		return true;
+	}
 }
