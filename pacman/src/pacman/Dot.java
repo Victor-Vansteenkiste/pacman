@@ -6,13 +6,12 @@ package pacman;
  * 		| getSquare() != null
  * @immutable
  */    
-public class Dot {
+public class Dot extends FoodItem {
 	/**
 	 * @invar Square is not null.
 	 * 		| square != null
 	 */
 	private final Square square;
-	
 	/**
 	 * Return the square of the object.
 	 * @basic
