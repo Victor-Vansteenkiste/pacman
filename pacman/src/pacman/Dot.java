@@ -35,6 +35,11 @@ public class Dot extends FoodItem {
 		this.square = square;
 	}
 	
+	/**
+	 * @basic
+	 * @post | result == 1
+	 * @post | getSquare() == old(getSquare())
+	 */
 	public int getSize() {
 		return size;
 	}

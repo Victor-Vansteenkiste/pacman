@@ -12,6 +12,11 @@ public class PowerPellet extends FoodItem {
 		this.square = square;
 	}
 	
+	/**
+	 * @basic
+	 * @post | result == 2 
+	 * @post | getSquare() == old(getSquare())
+	 */
 	public int getSize() {
 		return size;
 	}
