@@ -1,18 +1,9 @@
 package pacman;
 
 public abstract class FoodItem {
-
-	public FoodItem() {}
 	
+	private int size;
 	public abstract Square getSquare();
-	
-	public int getSize() {
-		if(this instanceof Dot)
-			return 1;
-		else
-			return 2;
-	}
-	
-	
-	
+	public abstract int getSize();
+
 }

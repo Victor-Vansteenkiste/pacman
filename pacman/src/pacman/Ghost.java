@@ -12,7 +12,7 @@ import java.util.Random;
  * 
  */
  
-public class Ghost {
+public class Ghost{
 	
 	/**
 	 * @invar The square cannot be null. 
@@ -124,11 +124,9 @@ public class Ghost {
 		ghostState = ghostState.move(this, random);
 	}
 	
+	
 	public boolean isVulnerable() {
-		if(ghostState instanceof VulnerableGhostState)
-			return true;
-		else
-			return false;
+		return ghostState.isVulnerable();
 	}
 	
 	public void pacManAtePowerPellet() {

@@ -17,4 +17,8 @@ public class RegularGhostState extends GhostState {
 		return new RegularGhostState();
 	}
 
+	@Override
+	public boolean isVulnerable() {
+		return false;
+	}
 }

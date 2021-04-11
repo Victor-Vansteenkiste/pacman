@@ -35,4 +35,9 @@ public class VulnerableGhostState extends GhostState {
 		ghost.setSquare(ghost.getOriginalSquare());
 		return new RegularGhostState();
 	}
+	
+	@Override
+	public boolean isVulnerable() {
+		return true;
+	}
 }

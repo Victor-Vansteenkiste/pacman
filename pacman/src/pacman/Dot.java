@@ -12,6 +12,7 @@ public class Dot extends FoodItem {
 	 * 		| square != null
 	 */
 	private final Square square;
+	private final int size = 1;
 	/**
 	 * Return the square of the object.
 	 * @basic
@@ -32,6 +33,10 @@ public class Dot extends FoodItem {
 		if(square == null)
 			throw new IllegalArgumentException("square is null");
 		this.square = square;
+	}
+	
+	public int getSize() {
+		return size;
 	}
 
 }

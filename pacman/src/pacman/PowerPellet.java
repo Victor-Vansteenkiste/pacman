@@ -2,6 +2,7 @@ package pacman;
 
 public class PowerPellet extends FoodItem {
 	private final Square square;
+	private final int size = 2;
 	
 	public Square getSquare() {return square;}
 	
@@ -9,5 +10,9 @@ public class PowerPellet extends FoodItem {
 		if(square == null)
 			throw new IllegalArgumentException("square is null");
 		this.square = square;
+	}
+	
+	public int getSize() {
+		return size;
 	}
 }
