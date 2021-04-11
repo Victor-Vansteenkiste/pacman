@@ -23,6 +23,8 @@ public class Ghost {
 	 */
 	private Square square;
 	private Direction direction;
+	private GhostState ghostState;
+	private Square originalSquare;
 	
 	
 	/**
@@ -57,7 +59,9 @@ public class Ghost {
 			throw new IllegalArgumentException("direction is null");
 
 		this.square = square;
+		this.originalSquare = square;
 		this.direction = direction;
+		ghostState = new RegularGhostState();
 	}
 	 
 	/** 
@@ -111,12 +115,32 @@ public class Ghost {
 	}
 	
 	// No formal document required
-	public void move(Random random) {
+	public void reallyMove(Random random) {
 		setDirection(chooseNextMoveDirection(random));
 		setSquare(getSquare().getNeighbor(getDirection()));
 	}
 	
+	public void move(Random random) {
+		ghostState = ghostState.move(this, random);
+	}
+	
 	public boolean isVulnerable() {
-		return true;
+		if(ghostState instanceof VulnerableGhostState)
+			return true;
+		else
+			return false;
+	}
+	
+	public void pacManAtePowerPellet() {
+		ghostState = new VulnerableGhostState(1, 0);
+		direction = direction.getOpposite();
+	}
+	
+	public void hitBy(PacMan pacMan) {
+		ghostState = ghostState.hitBy(this, pacMan);
+	}
+	
+	public Square getOriginalSquare() {
+		return originalSquare;
 	}
 }

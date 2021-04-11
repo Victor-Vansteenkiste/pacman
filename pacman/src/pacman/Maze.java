@@ -34,7 +34,7 @@ public class Maze {
 	private void checkPacManDamage() {
 		for (Ghost ghost : ghosts)
 			if (ghost.getSquare().equals(pacMan.getSquare()))
-				pacMan.die();
+				ghost.hitBy(pacMan);
 	}
 	
 	public void moveGhosts() {
@@ -53,6 +53,12 @@ public class Maze {
 	private void removeDotAtSquare(Square square) {
 		for (int i = 0; i < foodItems.length; i++) {
 			if (foodItems[i].getSquare().equals(square)) {
+				if(foodItems[i] instanceof PowerPellet) {
+					for(int j = 0; j < ghosts.length;j++) {
+						ghosts[j].pacManAtePowerPellet();
+					}
+				}
+					
 				removeFoodItemAtIndex(i);
 				return;
 			}
