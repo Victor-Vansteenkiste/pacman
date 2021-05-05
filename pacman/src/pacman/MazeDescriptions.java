@@ -3,6 +3,9 @@ package pacman;
 import java.util.Arrays;
 import java.util.Random;
 
+import pacman.wormholes.ArrivalPortal;
+import pacman.wormholes.DeparturePortal;
+
 public class MazeDescriptions {
 	 
 	private MazeDescriptions() { throw new AssertionError("This class is not intended to be instantiated"); }
@@ -22,6 +25,9 @@ public class MazeDescriptions {
 		
 		int nbGhosts = 0;
 		Ghost[] ghosts = new Ghost[width * height];
+		
+		DeparturePortal[] departurePortals = new DeparturePortal[0];
+		ArrivalPortal[] arrivalPortals = new ArrivalPortal[0];
 		
 		
 		for (int row = 0; row < lines.length; row++) {
@@ -50,6 +56,21 @@ public class MazeDescriptions {
 					pacMan = new PacMan(3, Square.of(map, row, column));
 				}
 				case 'p' -> foodItems[nbFoodItems++] = new PowerPellet(Square.of(map, row, column));
+				case 'D' -> {
+					DeparturePortal[] newDeparturePortals = new DeparturePortal[departurePortals.length + 1];
+					for(int i = 0; i < departurePortals.length; i++)
+						newDeparturePortals[i] = departurePortals[i];
+					newDeparturePortals[departurePortals.length] = new DeparturePortal(Square.of(map, row, column));
+					departurePortals = newDeparturePortals;
+				}
+				case 'A' -> {
+					ArrivalPortal[] newArrivalPortals = new ArrivalPortal[arrivalPortals.length + 1];
+					for(int i = 0; i < arrivalPortals.length; i++)
+						newArrivalPortals[i] = arrivalPortals[i];
+					newArrivalPortals[arrivalPortals.length] = new ArrivalPortal(Square.of(map, row, column));
+					arrivalPortals = newArrivalPortals;
+				}
+				
 				default -> throw new IllegalArgumentException("Invalid character in maze description: " + c);
 				}
 			}
@@ -58,7 +79,7 @@ public class MazeDescriptions {
 		if (pacMan == null)
 			throw new IllegalArgumentException("Maze description does not contain a P character");
 		
-		return new Maze(random, map, pacMan, Arrays.copyOf(ghosts, nbGhosts), Arrays.copyOf(foodItems, nbFoodItems));
+		return new Maze(random, map, pacMan, Arrays.copyOf(ghosts, nbGhosts), Arrays.copyOf(foodItems, nbFoodItems), departurePortals.clone(), arrivalPortals.clone());
 	}
 
 }

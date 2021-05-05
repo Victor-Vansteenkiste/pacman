@@ -3,6 +3,10 @@ package pacman;
 import java.util.Arrays;
 import java.util.Random;
 
+import pacman.wormholes.ArrivalPortal;
+import pacman.wormholes.DeparturePortal;
+import pacman.wormholes.Wormhole;
+
 public class Maze {
 	
 	private Random random;
@@ -10,6 +14,21 @@ public class Maze {
 	private PacMan pacMan;
 	private Ghost[] ghosts;
 	private FoodItem[] foodItems;
+	private DeparturePortal[] departurePortals;
+	private ArrivalPortal[] arrivalPortals;
+	private Wormhole[] wormholes;
+	
+	public DeparturePortal[] getDeparturePortals() {
+		return departurePortals.clone();
+	}
+	
+	public ArrivalPortal[] getArrivalPortals() {
+		return arrivalPortals.clone();
+	}
+	
+	public Wormhole[] getWormholes() {
+		return wormholes.clone();
+	}
 	 
 	public MazeMap getMap() { return map; }
 	
@@ -19,13 +38,28 @@ public class Maze {
 	
 	public FoodItem[] getFoodItems() { return foodItems.clone(); }
 	
-	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, FoodItem[] foodItems) {
+	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, FoodItem[] foodItems, DeparturePortal[] departurePortals, ArrivalPortal[] arrivalPortals ) {
 		this.random = random;
 		this.map = map;
 		this.pacMan = pacMan;
 		this.ghosts = ghosts.clone();
 		this.foodItems = foodItems.clone();
+		this.arrivalPortals = arrivalPortals;
+		this.departurePortals = departurePortals;
+		
+		this.wormholes = new Wormhole[0];
 	}
+	
+	public void addWormhole(Wormhole wormhole) {
+		Wormhole[] newWormholes = new Wormhole[wormholes.length + 1];
+		for(int i = 0; i < wormholes.length; i++)
+			newWormholes[i] = wormholes[i];
+		newWormholes[wormholes.length] = wormhole;
+		this.wormholes = newWormholes;
+		
+	}
+	
+	
 	
 	public boolean isCompleted() {
 		return foodItems.length == 0;
@@ -67,11 +101,52 @@ public class Maze {
 	
 	public void movePacMan(Direction direction) {
 		Square newSquare = pacMan.getSquare().getNeighbor(direction);
-		if (newSquare.isPassable()) {
+		DeparturePortal departurePortal = isCorrespondingDeparturePortal(newSquare);
+		Wormhole[] posWormholes =  possibleWormholes(departurePortal);
+		
+		if(departurePortal != null && posWormholes.length != 0) {
+			Random random = new Random();
+			int randomInt = random.nextInt(posWormholes.length);
+			Wormhole randomWormhole = posWormholes[randomInt];
+			pacMan.setSquare(randomWormhole.getArrivalPortal().getSquare());
+			checkPacManDamage();
+			
+			
+		}else if (newSquare.isPassable()) {
 			pacMan.setSquare(newSquare);
 			removeDotAtSquare(newSquare);
 			checkPacManDamage();
 		}
 	}
+	
+	private DeparturePortal isCorrespondingDeparturePortal(Square square) {
+		for(DeparturePortal departurePortal : departurePortals) {
+			if(departurePortal.getSquare().equals(square))
+				return departurePortal;
+		}
+		return null;
+	}
+	
+	private Wormhole[] possibleWormholes(DeparturePortal departurePortal) {
+		Wormhole[] posWormholes = new Wormhole[0];
+		Wormhole[] newPosWormholes;
+		System.out.println(wormholes.length);
+		for(Wormhole wormhole : wormholes) {
+			if(wormhole.getDeparturePortal().equals(departurePortal)) {
+				System.out.println("PACMAN");
+				newPosWormholes = new Wormhole[posWormholes.length + 1];
+				for(int i = 0; i < posWormholes.length; i++)
+					newPosWormholes[i] = wormholes[i];
+				newPosWormholes[posWormholes.length] = wormhole;
+				posWormholes = newPosWormholes;
+			
+		}
+			
+		}
+		
+		return posWormholes;
+	}
+	
+	
 	
 }

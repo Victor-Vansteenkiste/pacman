@@ -104,6 +104,7 @@ public class MazeView extends JPanel {
 				#D.................A#
 				#####################
 				""");
+		
 		DeparturePortal[] departurePortals = maze.getDeparturePortals();
 		ArrivalPortal[] arrivalPortals = maze.getArrivalPortals();
 		maze.addWormhole(new Wormhole(departurePortals[0], arrivalPortals[2]));
