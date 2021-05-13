@@ -5,7 +5,7 @@ import java.util.Set;
 
 import pacman.Square;
 import logicalcollections.LogicalSet;
-
+ 
 /**
  * Each instance of this class represents an arrival portal in a Pac-Man maze.
  * 

@@ -87,7 +87,7 @@ public class Wormhole {
 	 * 		
 	 * 			
 	 * @post | arrivalPortal == getArrivalPortal()
-	 * 
+	 *  
 	 */
 	public void setArrivalPortal(ArrivalPortal arrivalPortal) {
 		if(departurePortal == null)
