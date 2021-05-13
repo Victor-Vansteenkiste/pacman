@@ -67,26 +67,38 @@ public class ArrivalPortal {
 	public Square getSquare() {
 		return this.square;
 	}
-	
+	 
 	/**
 	 * @throws IllegalArgumentException if the given wormhole is null.
 	 * 		| wormhole == null
+	 * @throws IllegalArgumentException if this arrival portal is already a part of the given wormhole.
+	 * 		| getWormholes().contains(wormhole)
 	 * @mutates | this
 	 * @post | getWormholesInternal().equals(LogicalSet.plus(old(getWormholesInternal()), wormhole))
 	 * 
 	 */
 	void addWormhole(Wormhole wormhole) {
+		if(wormhole == null)
+			throw new IllegalArgumentException("The given wormhole is null");
+		if(wormholes.contains(wormhole))
+			throw new IllegalArgumentException("This arrival portal is already a part of the given wormhole");
 		wormholes.add(wormhole);
 	}
 	
 	/**
 	 * @throws IllegalArgumentException if the given wormhole is null.
 	 * 		| wormhole == null
+	 * @throws IllegalArgumentException if this arrival portal is already a part of the given wormhole.
+	 * 		| !getWormholes().contains(wormhole)
 	 * @mutates | this
 	 * @post | getWormholesInternal().equals(LogicalSet.minus(old(getWormholesInternal()), wormhole))
 	 * 
 	 */
 	void removeWormhole(Wormhole wormhole) {
+		if(wormhole == null)
+			throw new IllegalArgumentException("The given wormhole is null");
+		if(!wormholes.contains(wormhole))
+			throw new IllegalArgumentException("This arrival portal is not a part of the given wormhole");
 		wormholes.remove(wormhole);
 	}
 	

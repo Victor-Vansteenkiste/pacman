@@ -50,7 +50,7 @@ public class DeparturePortal {
 	 * Changes the value of square to the given square.
 	 * @throws IllegalArgumentException if the given square is null.
 	 * 		| square == null
-	 * @mutates_properties | this.getSquare()
+	 * @mutates | this
 	 * @post square equals the given square.
 	 * 		| square == getSquare()
 	 */
@@ -71,6 +71,8 @@ public class DeparturePortal {
 	/**
 	 * @throws IllegalArgumentException if the given wormhole is null.
 	 * 		| wormhole == null
+	 * @throws IllegalArgumentException if this departure portal is already part of the given wormhole.
+	 * 		| getWormholes().contains(wormhole)
 	 * @mutates | this
 	 * @post | getWormholesInternal().equals(LogicalSet.plus(old(getWormholesInternal()), wormhole))
 	 * 
@@ -78,12 +80,16 @@ public class DeparturePortal {
 	void addWormhole(Wormhole wormhole) {
 		if(wormhole == null)
 			throw new IllegalArgumentException("The given wormhole is null");
+		if(wormholes.contains(wormhole))
+			throw new IllegalArgumentException("This departure portal is already a part of the given wormhole");
 		wormholes.add(wormhole);
 	}
 	
 	/**
 	 * @throws IllegalArgumentException if the given wormhole is null.
 	 * 		| wormhole == null
+	 * @throws IllegalArgumentException if this departure portal is not part of the given wormhole.
+	 * 		| !getWormholes().contains(wormhole)
 	 * @mutates | this
 	 * @post | getWormholesInternal().equals(LogicalSet.minus(old(getWormholesInternal()), wormhole))
 	 * 
@@ -91,8 +97,10 @@ public class DeparturePortal {
 	void removeWormhole(Wormhole wormhole) {
 		if(wormhole == null)
 			throw new IllegalArgumentException("The given wormhole is null");
+		if(!wormholes.contains(wormhole))
+			throw new IllegalArgumentException("This departure portal is not a part of the given wormhole");
 		wormholes.remove(wormhole);
-	}
+	} 
 	
 	/**
 	 * @creates | result

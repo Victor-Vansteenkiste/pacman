@@ -72,7 +72,7 @@ public class Maze {
 	
 	public void moveGhosts() {
 		for (Ghost ghost : ghosts)
-			ghost.move(random);
+			ghost.move(random); 
 		checkPacManDamage();
 	}
 	

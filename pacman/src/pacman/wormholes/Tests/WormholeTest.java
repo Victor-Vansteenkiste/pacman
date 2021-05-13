@@ -11,7 +11,7 @@ import pacman.Square;
 import pacman.wormholes.ArrivalPortal;
 import pacman.wormholes.DeparturePortal;
 import pacman.wormholes.Wormhole;
-
+ 
 class WormholeTest {
  
 	@Test

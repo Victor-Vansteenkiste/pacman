@@ -97,15 +97,18 @@ public class Wormhole {
 		arrivalPortal.addWormhole(this);
 		departurePortal.addWormhole(this);
 	}
-	
+	 
 	/**
+	 * Returns the departure portal of this wormhole.
 	 * @basic
+	 * 
 	 */
 	public DeparturePortal getDeparturePortal() {
 		return departurePortal;
 	}
 	
 	/**
+	 * Returns the arrival portal of this wormhole.
 	 * @basic
 	 */
 	public ArrivalPortal getArrivalPortal() {
